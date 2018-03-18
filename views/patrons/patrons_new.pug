@@ -1,0 +1,14 @@
+extends ../layout.pug
+
+block main
+
+  h1 #{pageTitle}
+
+  if errors
+    ul
+      each error in errors
+        li
+          em(style='color: red')= error.message
+
+  form(action='/patrons', method='post')
+    include patron_form.pug

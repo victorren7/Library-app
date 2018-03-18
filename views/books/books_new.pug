@@ -1,0 +1,18 @@
+extends ../layout
+
+block main
+
+  include ../includes/books.pug
+
+  h1 #{pageTitle}
+
+  if errors
+    ul
+      each error in errors
+        li
+          em(style='color: red')= error.message
+
+  form(method='POST' action='../books')
+    include books_form.pug
+    p
+      input(type='submit' value='Create New Book')

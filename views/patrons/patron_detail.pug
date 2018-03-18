@@ -1,0 +1,15 @@
+extends ../layout.pug
+
+block main
+
+  h1= patron.first_name + ' ' + patron.last_name
+
+  if errors
+    ul
+      each error in errors
+        li
+          em(style='color: red')= error.message
+
+  form(action='/patrons/' + patron.id method='post')
+    include patron_form.pug
+  include ../includes/loan_history.pug

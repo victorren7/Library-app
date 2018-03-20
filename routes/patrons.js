@@ -19,7 +19,7 @@ router.get('/new', function(req, res, next) {
 });
 
 //Create new patron route
-router.post('/', function(req, res, next) {
+router.post('/new', function(req, res, next) {
   Patron.create(req.body)
         .then(function(patron) {
           res.redirect('/patrons');

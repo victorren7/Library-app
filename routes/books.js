@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 //List of all checked out books route
-router.get('/checked_out', function(req, res, next) {
+router.get('/out', function(req, res, next) {
   Loan.findAll({
     include: [Book, Patron],
     where: { returned_on: null }
@@ -42,7 +42,7 @@ router.get('/checked_out', function(req, res, next) {
 });
 
 //New book route
-router.get('/new_book', function(req, res, next) {
+router.get('/new', function(req, res, next) {
   let book = Book.build();
   res.render('books/books_new', { book: book, pageTitle: 'New Book' });
 });

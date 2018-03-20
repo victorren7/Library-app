@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 //Checked out loans route
-router.get('/checked_out', function(req, res, next) {
+router.get('/out', function(req, res, next) {
   Loan.findAll(
     {
      include: [Book, Patron],
@@ -89,7 +89,7 @@ router.post('/return:id', function(req, res, next) {
 });
 
 //New loan route
-router.get('/new_loan', function(req, res, next) {
+router.get('/new', function(req, res, next) {
   let loan = Loan.build({
     loaned_on: moment().format('YYYY-MM-DD'),
     return_by: moment().add(7, 'days').format('YYYY-MM-DD')

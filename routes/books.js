@@ -20,7 +20,7 @@ router.get('/out', function(req, res, next) {
   }
 )
     .then(function(loans) {
-      let books = loans.map((loan) => loan.book);
+      let books = loans.map((loan) => loan.Book);
       res.render('books/books', { books: books, pageTitle: 'Checked Out'});
     })
   });

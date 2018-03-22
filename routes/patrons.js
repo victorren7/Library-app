@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var Patron = require('../models').Patron;
 var Book = require('../models').Book;
 var Loan = require('../models').Loan;
-var Patron = require('../models').Patron;
 
-//All patrons route
+
+/**************************** GET patrons listing. **************************/
 router.get('/', function(req, res, next) {
   Patron.findAll().then(function(patrons) {
     res.render('patrons/patrons', { patrons: patrons });
@@ -12,14 +13,14 @@ router.get('/', function(req, res, next) {
 
 });
 
-//New patron route
+/********************** GET new patron form ******************************/
 router.get('/new', function(req, res, next) {
   let patron = Patron.build();
   res.render('patrons/patrons_new', { patron: patron, pageTitle: 'New Patron' });
 });
 
-//Create new patron route
-router.post('/new', function(req, res, next) {
+/************************* POST create new patron *************************/
+router.post('/', function(req, res, next) {
   Patron.create(req.body)
         .then(function(patron) {
           res.redirect('/patrons');
@@ -34,7 +35,7 @@ router.post('/new', function(req, res, next) {
         });
 });
 
-//Individual patron route
+/************************* GET individual patron ****************************/
 router.get('/:id', function(req, res, next) {
   Patron.find({
     include: [
@@ -53,7 +54,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-//Post update patrong route
+/************************* POST update patron ****************************/
 router.post('/:id', function(req, res, next) {
   Patron.find({
     include: [
